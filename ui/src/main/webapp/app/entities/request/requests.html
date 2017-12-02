@@ -18,7 +18,6 @@
         <table class="jh-table table table-striped">
             <thead>
                 <tr>
-                    <th><span>ID</span></th>
                     <th><span>Name</span></th>
                     <th><span>Price</span></th>
                     <th></th>
@@ -26,7 +25,6 @@
             </thead>
             <tbody>
                 <tr ng-repeat="request in vm.requests track by request.id">
-                    <td><a ui-sref="request-detail({id:request.id})">{{request.id}}</a></td>
                     <td>{{request.name}}</td>
                     <td>{{request.price}}</td>
                     <td class="text-right">
