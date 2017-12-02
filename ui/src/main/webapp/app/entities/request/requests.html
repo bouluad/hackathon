@@ -20,6 +20,7 @@
                 <tr>
                     <th><span>Name</span></th>
                     <th><span>Price</span></th>
+                    <th><span>Matched at</span></th>
                     <th></th>
                 </tr>
             </thead>
@@ -27,6 +28,7 @@
                 <tr ng-repeat="request in vm.requests track by request.id">
                     <td>{{request.name}}</td>
                     <td>{{request.price}}</td>
+                    <td>{{request.matchedAt}}</td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"

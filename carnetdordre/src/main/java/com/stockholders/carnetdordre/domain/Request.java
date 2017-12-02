@@ -37,6 +37,9 @@ public class Request implements Serializable {
     @Field("created_at")
     private Date createdAt;
 
+    @Field("matched_at")
+    private Date matchedAt;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public String getId() {
         return id;
@@ -107,6 +110,14 @@ public class Request implements Serializable {
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
+    public Date getMatchedAt() {
+        return matchedAt;
+    }
+
+    public void setMatchedAt(Date matchedAt) {
+        this.matchedAt = matchedAt;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -136,6 +147,8 @@ public class Request implements Serializable {
             ", user='" + getUser() + "'" +
             ", score='" + getScore() + "'" +
             ", createdAt='" + getCreatedAt() + "'" +
+            ", matchedAt='" + getMatchedAt() + "'" +
             "}";
     }
+
 }
