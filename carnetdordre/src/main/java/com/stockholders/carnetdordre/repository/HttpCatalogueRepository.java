@@ -26,7 +26,7 @@ public class HttpCatalogueRepository {
         headers.set("Authorization", "Bearer " + SecurityUtils.getCurrentUserJWT().get());
         HttpEntity<String> entity = new HttpEntity<>("parameters", headers);
         ResponseEntity<List<Product>> rateResponse =
-            restTemplate.exchange("http://localhost:8080/catalogue/api/products",
+            restTemplate.exchange("http://207.154.195.210:8080/catalogue/api/products",
                 HttpMethod.GET, entity, new ParameterizedTypeReference<List<Product>>() {
                 });
         List<Product> products = rateResponse.getBody();
