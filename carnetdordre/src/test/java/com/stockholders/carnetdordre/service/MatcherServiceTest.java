@@ -25,7 +25,7 @@ import static org.mockito.Mockito.when;
 
 public class MatcherServiceTest {
 
-    public static final String T11_00_00_000Z = "2017-12-02T11:00:00.000z";
+    private static final String T11_00_00_000Z = "2017-12-02T11:00:00.000z";
 
     @Test
     public void matches_with_no_request_should_do_nothing() {
@@ -58,9 +58,10 @@ public class MatcherServiceTest {
         Request request1 = RequestBuilder.aRequest()
             .withId("1").withName("PS4").withPrice(390L).withUser("user1").withScore((double)42)
             .build();
-        Product dummyProduct = new Product();
-        Request matchedRequest = matcherServiceUpdater.doMatches(request1, dummyProduct);
+        Product dummyProduct = ProductBuilder.aProduct()
+            .withId("1").withName("PS4").withNumber(1L).withPrice(390L).build();
         when(clock.instant()).thenReturn(Instant.parse(T11_00_00_000Z));
+        Request matchedRequest = matcherServiceUpdater.doMatches(request1, dummyProduct);
 
         //Then
         Request requestResult = RequestBuilder.aRequest()
@@ -72,7 +73,7 @@ public class MatcherServiceTest {
 
         Product productStockUpdated = ProductBuilder.aProduct()
             .withId("1").withName("PS4").withNumber(0L).withPrice(390L).build();
-        verify(catalogueRepositoryMock).save(argThat(new SamePropertyValuesAs<Product>(productStockUpdated)));
+        verify(catalogueRepositoryMock).save(argThat(new SamePropertyValuesAs<>(productStockUpdated)));
     }
 
     @Test
@@ -89,12 +90,12 @@ public class MatcherServiceTest {
         Request request1 = RequestBuilder.aRequest()
             .withId("1").withName("PS4").withPrice(410L).withUser("user1").withScore((double)42)
             .build();
-        List<Request> requests = Arrays.asList(request1);
+        List<Request> requests = Collections.singletonList(request1);
         when(requestRepositoryMock.findAll()).thenReturn(requests);
 
         Product product1 = ProductBuilder.aProduct()
             .withId("1").withName("PS4").withNumber(1L).withPrice(390L).build();
-        List<Product> products = Arrays.asList(product1);
+        List<Product> products = Collections.singletonList(product1);
         when(catalogueRepositoryMock.findAll()).thenReturn(products);
 
         Request requestResult = RequestBuilder.aRequest()
@@ -104,7 +105,7 @@ public class MatcherServiceTest {
         when(matcherServiceUpdaterMock.doMatches(anyObject(), anyObject())).thenReturn(requestResult);
 
         //When
-        List<Request> matches = matcherService.matches();
+        matcherService.matches();
 
         //Then
         verify(matcherServiceUpdaterMock).doMatches(
@@ -135,7 +136,7 @@ public class MatcherServiceTest {
 
         Product product1 = ProductBuilder.aProduct()
             .withId("1").withName("PS4").withNumber(1L).withPrice(390L).build();
-        List<Product> products = Arrays.asList(product1);
+        List<Product> products = Collections.singletonList(product1);
         when(catalogueRepositoryMock.findAll()).thenReturn(products);
 
         Request requestResult = RequestBuilder.aRequest()
@@ -145,7 +146,7 @@ public class MatcherServiceTest {
         when(matcherServiceUpdaterMock.doMatches(anyObject(), anyObject())).thenReturn(requestResult);
 
         //When
-        List<Request> matches = matcherService.matches();
+        matcherService.matches();
 
         //Then
         verify(matcherServiceUpdaterMock).doMatches(
@@ -197,7 +198,7 @@ public class MatcherServiceTest {
         when(matcherServiceUpdaterMock.doMatches(anyObject(), anyObject())).thenReturn(requestResult2);
 
         //When
-        List<Request> matches = matcherService.matches();
+        matcherService.matches();
 
         //Then
         verify(matcherServiceUpdaterMock).doMatches(
