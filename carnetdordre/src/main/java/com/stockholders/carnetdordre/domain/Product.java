@@ -1,6 +1,10 @@
 package com.stockholders.carnetdordre.domain;
 
+
 public class Product {
+
+    /** Required for Jackson 2 */
+    public Product() {}
 
     private String id;
     private String name;
