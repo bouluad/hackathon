@@ -7,10 +7,12 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Repository;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
+@Repository
 public class HttpCatalogueRepository {
 
     private RestTemplate restTemplate;
@@ -21,7 +23,7 @@ public class HttpCatalogueRepository {
 
     public Iterable<Product> findAll() {
         HttpHeaders headers = new HttpHeaders();
-        headers.set("Bearer", SecurityUtils.getCurrentUserJWT().get());
+        headers.set("Authorization", "Bearer " + SecurityUtils.getCurrentUserJWT().get());
         HttpEntity<String> entity = new HttpEntity<>("parameters", headers);
         ResponseEntity<List<Product>> rateResponse =
             restTemplate.exchange("http://localhost:8080/catalogue/api/products",
