@@ -1,0 +1,55 @@
+version: '3'
+services:
+    authentification-app:
+        image: authentification
+        environment:
+            - SPRING_PROFILES_ACTIVE=prod,swagger
+            - SPRING_DATA_MONGODB_URI=mongodb://authentification-mongodb:27017
+            - SPRING_DATA_MONGODB_DATABASE=authentification
+            - JHIPSTER_SLEEP=10 # gives time for the database to boot before the application
+        ports:
+            - 8080:8080
+    authentification-mongodb:
+        image: mongo
+        ports:
+          - "27017:27017"
+
+    carnetdordre-app:
+        image: carnetdordre
+        environment:
+            - SPRING_PROFILES_ACTIVE=prod,swagger
+            - SPRING_DATA_MONGODB_URI=mongodb://carnetdordre-mongodb:27018
+            - SPRING_DATA_MONGODB_DATABASE=carnetdordre
+            - JHIPSTER_SLEEP=10 # gives time for the database to boot before the application
+    carnetdordre-mongodb:
+        image: mongo
+        command: mongod --port 27018
+        ports:
+          - "27018:27018"
+
+    catalogue-app:
+        image: catalogue
+        environment:
+            - SPRING_PROFILES_ACTIVE=prod,swagger
+            - SPRING_DATA_MONGODB_URI=mongodb://catalogue-mongodb:27019
+            - SPRING_DATA_MONGODB_DATABASE=catalogue
+            - JHIPSTER_SLEEP=10 # gives time for the database to boot before the application
+    catalogue-mongodb:
+        image: mongo
+        command: mongod --port 27019
+        ports:
+          - "27019:27019"
+    ui-app:
+        image: ui
+        environment:
+            - SPRING_PROFILES_ACTIVE=prod,swagger
+            - SPRING_DATA_MONGODB_URI=mongodb://ui-mongodb:27020
+            - SPRING_DATA_MONGODB_DATABASE=ui
+            - JHIPSTER_SLEEP=10 # gives time for the database to boot before the application
+        ports:
+            - 8080:8080
+    ui-mongodb:
+        image: mongo
+        command: mongod --port 27020
+        ports:
+          - "27020:27020"
