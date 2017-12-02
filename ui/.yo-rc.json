@@ -22,7 +22,7 @@
     "buildTool": "maven",
     "enableSocialSignIn": false,
     "enableSwaggerCodegen": true,
-    "jwtSecretKey": "a65f42bf81eb54db9f243e43f2676d9d82eb5f41",
+    "jwtSecretKey": "bc998d619f9d26c4d88a27925f68c7fe6b4f9289",
     "clientFramework": "angular1",
     "useSass": false,
     "clientPackageManager": "yarn",
