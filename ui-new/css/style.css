@@ -2717,6 +2717,7 @@ footer .bottom-footer {padding: 25px 0 70px 0;}
   display: inline-block;
   line-height: 40px;
   max-height: 40px;
+  margin-right: 20px;
 }
 .shop-details .procuct-details .product-info .order-box li button {
   font-size: 20px;
@@ -2728,7 +2729,7 @@ footer .bottom-footer {padding: 25px 0 70px 0;}
 .shop-details .procuct-details .product-info .order-box #product-value {
   font-size: 16px;
   color: #12121a;
-  max-width: 40px;
+  max-width: 600px;
   background: transparent;
   border: none;
   padding-left: 10px;
