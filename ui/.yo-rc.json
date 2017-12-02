@@ -1,7 +1,8 @@
 {
   "generator-jhipster": {
     "promptValues": {
-      "packageName": "com.stockholders.ui"
+      "packageName": "com.stockholders.ui",
+      "microservicePath": "../catalogue"
     },
     "jhipsterVersion": "4.11.1",
     "baseName": "ui",
