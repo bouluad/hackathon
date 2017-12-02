@@ -1,0 +1,13 @@
+version: '2'
+services:
+    carnetdordre-app:
+        image: carnetdordre
+        environment:
+            - SPRING_PROFILES_ACTIVE=prod,swagger
+            - SPRING_DATA_MONGODB_URI=mongodb://carnetdordre-mongodb:27017
+            - SPRING_DATA_MONGODB_DATABASE=carnetdordre
+            - JHIPSTER_SLEEP=10 # gives time for the database to boot before the application
+    carnetdordre-mongodb:
+        extends:
+            file: mongodb.yml
+            service: carnetdordre-mongodb
