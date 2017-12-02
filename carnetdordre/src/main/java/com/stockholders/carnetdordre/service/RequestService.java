@@ -3,6 +3,7 @@ package com.stockholders.carnetdordre.service;
 import com.stockholders.carnetdordre.domain.Request;
 import com.stockholders.carnetdordre.repository.RequestRepository;
 import com.stockholders.carnetdordre.security.SecurityUtils;
+import net.bytebuddy.asm.Advice;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -33,10 +34,30 @@ public class RequestService {
      */
     public Request save(Request request) {
         log.debug("Request to save Request : {}", request);
-        request.setCreatedAt(new Date(Calendar.getInstance().getTime().getTime()));
-        request.setScore(0.);
+        if (request.getCreatedAt() == null) request.setCreatedAt(new Date(Calendar.getInstance().getTime().getTime()));
+        if (request.getScore() == null) request.setScore(0.);
         request.setUser(SecurityUtils.getCurrentUserLogin().get());
+        refreshScoring(request);
         return requestRepository.save(request);
+
+    }
+
+    private Request update(Request request) {
+        return requestRepository.save(request);
+    }
+
+    private void refreshScoring(Request request) {
+        List<Request> requests = findAll();
+        long i = System.currentTimeMillis();
+        log.debug("now " + i);
+        for(Request req : requests){
+            if (req.getName().equals(request.getName())){
+                log.debug("created at " + req.getCreatedAt().getTime());
+                req.setScore((i - req.getCreatedAt().getTime()) * 1d / i * Math.pow(req.getPrice(), 5));
+                update(req);
+            }
+        }
+        request.setScore((i - request.getCreatedAt().getTime()) * 1d / i * Math.pow(request.getPrice(), 5));
     }
 
     /**
