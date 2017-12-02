@@ -21,7 +21,7 @@ spring:
             enabled: false
     data:
         mongodb:
-            uri: mongodb://localhost:27017
+            uri: mongodb://authentification-mongodb:27017
             database: authentification
     mail:
         host: localhost
@@ -49,7 +49,7 @@ spring:
 #        key-alias: authentification
 # ===================================================================
 server:
-    port: 8080
+    port: 8081
     compression:
         enabled: true
         mime-types: text/html,text/xml,text/plain,text/css, application/javascript, application/json

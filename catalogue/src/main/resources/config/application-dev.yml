@@ -26,7 +26,7 @@ spring:
         serialization.indent_output: true
     data:
         mongodb:
-            uri: mongodb://localhost:27017
+            uri: mongodb://catalogue-mongodb:27019
             database: catalogue
     mail:
         host: localhost

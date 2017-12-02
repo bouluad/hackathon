@@ -21,7 +21,7 @@ spring:
             enabled: false
     data:
         mongodb:
-            uri: mongodb://localhost:27017
+            uri: mongodb://ui-mongodb:27020
             database: ui
     mail:
         host: localhost

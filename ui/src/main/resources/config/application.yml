@@ -24,13 +24,13 @@ zuul: # those values must be configured depending on the application specific ne
     routes:
         catalogue:
             path: /catalogue/**
-            url: http://localhost:8082
+            url: http://207.154.195.210:8082
         auth:
             path: /auth/**
-            url: http://localhost:8081
+            url: http://207.154.195.210:8081
         carnetdordre:
             path: /carnetdordre/**
-            url: http://localhost:8083
+            url: http://207.154.195.210:8083
 
 # See https://github.com/Netflix/Hystrix/wiki/Configuration
 hystrix:
