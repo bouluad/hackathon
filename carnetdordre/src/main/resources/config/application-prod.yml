@@ -13,6 +13,8 @@
 # http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
 # ===================================================================
 
+stockholders.apiGatewayUrl: http://localhost:8080
+
 spring:
     devtools:
         restart:
